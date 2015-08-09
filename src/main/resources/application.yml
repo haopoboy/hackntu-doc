@@ -1,0 +1,4 @@
+spring:
+  profiles: production
+  thymeleaf:
+    cache: true
