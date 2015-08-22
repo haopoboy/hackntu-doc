@@ -7,13 +7,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.boot.test.WebIntegrationTest;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Inherited
 @Documented
 @Run
-@WebAppConfiguration
+@WebIntegrationTest
 public @interface RunWebApp {
 }

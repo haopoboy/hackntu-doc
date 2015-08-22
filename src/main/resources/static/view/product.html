@@ -1,0 +1,33 @@
+<md-content layout="column" flex layout-padding>
+		<h2>{{product.name}}</h2>
+	<md-list class="md-2-line">
+		
+		<md-subheader class="md-no-sticky md-warn" ng-show="product.disadvantages.length > 0">缺點</md-subheader>
+		<md-list-item ng-repeat="event in events">
+			<div>
+				<h3>{{event.name}}</h3>
+				<p>{{element.description}}</p>
+			</div>
+		</md-list-item>
+		<md-list-item ng-repeat="element in product.disadvantages">
+			<div>
+				<h3>{{element.name}}</h3>
+				<p>{{element.description}}</p>
+			</div>
+		</md-list-item>
+		<md-subheader class="md-primary" ng-show="product.advantages.length  > 0">優點</md-subheader>
+		<md-list-item ng-repeat="element in product.advantages">
+			<div>
+				<h3>{{element.name}}</h3>
+				<p>{{element.description}}</p>
+			</div>
+		</md-list-item>
+		<md-subheader ng-show="product.others.length > 0">正常</md-subheader>
+		<md-list-item ng-repeat="element in product.others">
+			<div>
+				<h3>{{element.name}}</h3>
+				<p>{{element.description}}</p>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>

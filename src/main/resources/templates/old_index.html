@@ -18,17 +18,19 @@
 		</md-toolbar>
 		
 		<md-list>
-			<h3>交叉比對</h3>
-			<md-list-item ng-show="myProducts.length==0">
-				<p>空空</p>
+			<md-list-item ng-click="gotoUri($event, 'vege')">
+				<md-icon icon="{{item.icon}}"></md-icon>
+				<p>A</p>
 			</md-list-item>
-			<md-list-item ng-repeat="product in myProducts" ng-click="showProduct(product.id)">
-				<p>{{product.name}}</p>
-				<md-checkbox class="md-secondary" ng-model="product.checked"></md-checkbox>
+			<md-list-item ng-click="gotoUri($event, 'furit')">
+				<md-icon icon="{{item.icon}}"></md-icon>
+				<p>V</p>
 			</md-list-item>
-			<md-list-item ng-show="myProducts.length > 0" ng-click="clearProducts()">
-				<p>清除列表</p>
+			<md-list-item ng-click="gotoUri($event, 'other')">
+				<md-icon icon="{{item.icon}}"></md-icon>
+				<p>C</p>
 			</md-list-item>
+			<md-divider></md-divider>
 		</md-list>
 	</md-sidenav>
 	
@@ -82,7 +84,6 @@
 	<script src="bower_components/angular-aria/angular-aria.js"></script>
 	<script src="bower_components/angular-material/angular-material.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
-	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 	<script src="js/ctrl.js"></script>
 
 	<script type="text/javascript">
@@ -102,14 +103,6 @@
 					})
 					.when('/info/:id', {
 						templateUrl: 'view/info.html'
-					})
-					.when('/product/:id', {
-						templateUrl: 'view/product.html',
-						controller: 'ProductCtrl'
-					})
-					.when('/analysis', {
-						templateUrl: 'view/analysis.html',
-						controller: 'AnalysisCtrl'
 					})
 					.otherwise({redirectTo: '/recommend'})
 					;
