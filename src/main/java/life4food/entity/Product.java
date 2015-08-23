@@ -1,5 +1,6 @@
 package life4food.entity;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,6 @@ public class Product {
 	private Integer id;
 	private String name;
 	
-	private List<String> misunderstandings = Lists.newArrayList();
 	private List<Element> elements = Lists.newArrayList();
 
 	@Id
@@ -50,8 +50,8 @@ public class Product {
 		return this;
 	}
 	
-	public Product addElement(Element element) {
-		this.elements.add(element);
+	public Product addElements(Element... elements) {
+		this.elements.addAll( Arrays.asList(elements) );
 		return this;
 	}
 

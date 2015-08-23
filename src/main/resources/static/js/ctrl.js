@@ -3,7 +3,7 @@
 		.module('ctrl', ['ngMaterial', 'ngRoute', 'ngCookies'])
 		.controller('AppCtrl', AppCtrl)
 		.controller('ProductCtrl', ProductCtrl)
-		.controller('AnalysisCtrl', AnalysisCtrl)
+		.controller('EventCtrl', EventCtrl)
 		;
 	
 	function AppCtrl(
@@ -45,7 +45,6 @@
 			var products = $cookies.getObject("products");
 			
 			var contain = false;
-			$log.info(products);
 			for (var key in products) {
 				if (product.id == products[key].id) {
 					contain = true;
@@ -53,7 +52,12 @@
 			}
 			
 			if (!contain) {
-				products.push(product);
+				var clone = {
+						id: product.id,
+						name: product.name,
+						checked: true
+				};
+				products.push(clone);
 				$cookies.putObject("products", products);
 			}
 			
@@ -68,6 +72,9 @@
 			$location.path("/product/" + id);
 		}
 		
+		$scope.analysisDanger = function() {
+			$location.path("/event");
+		}
 		$scope.applyCookies();
 	}
 	
@@ -78,28 +85,6 @@
 		$http
 			.get("/product/" + id)
 			.success(function(data) {
-				data.checked = true;
-				
-				// classify by type
-				if (data) {
-					data.advantages = [];
-					data.disadvantages = [];
-					data.others = [];
-					
-					for (var key in data.elements) {
-						var element = data.elements[key];
-						if ("ADVANTAGE" == element.type) {
-							data.advantages.push(element);
-						}
-						else if ("DISADVANTAGE" == element.type) {
-							data.disadvantages.push(element);
-						}
-						else {
-							data.others.push(element);
-						}
-					}
-				}
-				
 				$scope.product = data;
 				$scope.$emit("putProduct", {
 					product: data
@@ -111,7 +96,14 @@
 			;
 	}
 	
-	function AnalysisCtrl() {
+	function EventCtrl($scope, $log, $http) {
 		this.name = "AnalysisCtrl";
+		
+		$http
+			.post("/event/analysis", [])
+			.success(function(data){
+				$scope.events = data;
+			})
+			;
 	}
 })();

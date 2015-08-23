@@ -10,7 +10,8 @@ public class Element {
 	private Integer id;
 	private String name;
 	private Type type = Type.NONE;
-	private String description;
+	private String advDescription;
+	private String disadvDescription;
 
 	@Id
 	@GeneratedValue
@@ -41,12 +42,21 @@ public class Element {
 		return this;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getAdvDescription() {
+		return advDescription;
 	}
 
-	public Element setDescription(String description) {
-		this.description = description;
+	public Element setAdvDescription(String advDescription) {
+		this.advDescription = advDescription;
+		return this;
+	}
+
+	public String getDisadvDescription() {
+		return disadvDescription;
+	}
+
+	public Element setDisadvDescription(String disadvDescription) {
+		this.disadvDescription = disadvDescription;
 		return this;
 	}
 }

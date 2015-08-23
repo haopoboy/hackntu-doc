@@ -1,0 +1,14 @@
+<md-content layout="column" flex layout-padding>
+	<h2>交叉分析</h2>
+	<div ng-repeat="event in events">
+		<h4>{{event.name}}</h4>
+		<md-list class="md-2-line" ng-show="event.type=='DISADVANTAGE'">
+			<md-subheader class="md-no-sticky md-warn">危險</md-subheader>
+			<p>{{event.description}}</p>
+		</md-list>
+		<md-list class="md-2-line" ng-show="event.type=='ADVANTAGE'">
+			<md-subheader class="md-no-sticky md-primary">好處</md-subheader>
+			<p>{{event.description}}</p>
+		</md-list>
+	</div>
+</md-content>
